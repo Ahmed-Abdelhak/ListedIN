@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using ListedIN.Models.Enums;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace ListedIN.Models
@@ -64,6 +65,16 @@ namespace ListedIN.Models
 
     public class RegisterViewModel
     {
+        [Required]
+        public string FirstName { get; set; }
+
+        [Required]
+        public string LastName { get; set; }
+        public string HeadLine { get; set; }
+        public string Position { get; set; }
+        public Country Country { get; set; }
+        public string Summary { get; set; }
+
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]

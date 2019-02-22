@@ -1,4 +1,4 @@
-﻿@*@model ListedIN.Models.Member                            
+﻿@model ListedIN.Models.ApplicationUser                           
 
 @{
     ViewBag.Title = "Me";
@@ -7,7 +7,7 @@
 
 <h2>My Profile</h2>      
 
-   
+      
     
     <div class="row">
         <div class="col-md-8">
@@ -15,12 +15,37 @@
                 <img src="..." alt="...">
                 <div class="caption" id="myProfile">
                     <h3> @Model.FirstName @Model.LastName </h3>
-                    <h4>@Model.HeadLine</h4>
-                            <p>@Model.Country</p>
+                    <h4>@Model.HeadLine</h4>    
+                    @if (Model.Country != 0)
+                    {
+
+                        <p>@Model.Country</p>
+
+                    }        
+                    
+                    @if (Model.HeadLine != null)
+                    {
+
+                        <p>@Model.HeadLine</p>
+
+                    }
+                    @if (Model.Position != null)
+                    {
+
+                        <p>@Model.Position</p>
+
+                    }   
+                    
+                    @if (Model.Summary != null)
+                    {               
+
+                        <p>@Model.Summary</p>
+
+                    }
                 </div>
             </div>
         </div>
-    </div>*@
+    </div>
  
                     
 

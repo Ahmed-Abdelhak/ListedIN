@@ -1,4 +1,6 @@
 ﻿using ListedIN.Models;
+using Microsoft.AspNet.Identity;
+using System.Linq;
 using System.Web.Mvc;
 
 namespace ListedIN.Controllers
@@ -21,27 +23,15 @@ namespace ListedIN.Controllers
 
         public ActionResult Index()
         {
-            return View();
+           var loggedId = HttpContext.User.Identity.GetUserId();
+
+
+           var user = _context.Users.Single(c => c.Id == loggedId);
+
+            return View(user);
         }
 
-
-        public ActionResult Edit(int id)
-        {
-            var member = _context.Members.Find(id);
-
-            if (member != null)
-                return HttpNotFound();
-
-            return View(member);
-
-        }
-
-        [HttpPost]
-        public ActionResult Edit(Member member)
-        {
-
-            return View();
-        }
+     
 
     }
 }

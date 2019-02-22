@@ -210,12 +210,23 @@
     <Compile Include="Migrations\201902211011416_Initial.Designer.cs">
       <DependentUpon>201902211011416_Initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201902221600366_AddNewColumnsInUserProfile.cs" />
+    <Compile Include="Migrations\201902221600366_AddNewColumnsInUserProfile.Designer.cs">
+      <DependentUpon>201902221600366_AddNewColumnsInUserProfile.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902221622096_DropMemberTable.cs" />
+    <Compile Include="Migrations\201902221622096_DropMemberTable.Designer.cs">
+      <DependentUpon>201902221622096_DropMemberTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902221642233_Fix.cs" />
+    <Compile Include="Migrations\201902221642233_Fix.Designer.cs">
+      <DependentUpon>201902221642233_Fix.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Enums\Country.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\Member.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -299,6 +310,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201902211011416_Initial.resx">
       <DependentUpon>201902211011416_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902221600366_AddNewColumnsInUserProfile.resx">
+      <DependentUpon>201902221600366_AddNewColumnsInUserProfile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902221622096_DropMemberTable.resx">
+      <DependentUpon>201902221622096_DropMemberTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902221642233_Fix.resx">
+      <DependentUpon>201902221642233_Fix.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
