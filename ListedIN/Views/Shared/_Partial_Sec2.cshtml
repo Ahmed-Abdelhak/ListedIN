@@ -1,6 +1,6 @@
 ﻿                      
 @using Microsoft.AspNet.Identity
-@model ListedIN.Models.ApplicationUser
+@model ListedIN.ViewModels.ProfileViewModel
 
 
 <div class="row" id="myProfile_Sec2">
@@ -9,54 +9,33 @@
 
 
         <div class="thumbnail">
-
             <div class="caption">
-               
-                @if (User.Identity.GetUserId() == Model.Id)
-                {
-                   
-                    <button type="button" class="btn btn-primary" style="float: right" data-toggle="modal" data-target="#myModal2">
-                        Edit
-                    </button>
+            <p>Education</p>
+
+                @{
+                    foreach (var education in Model.Educations)
+                    {
+                
+                        <div class="row">
+                            <div class="col-md-12">    
+                                <button type="button" class="btn btn-primary" style="float: right" data-toggle="modal" data-target="#myModal2">
+                                    Edit
+                                </button> 
+                                <h4>@education.Name</h4>
+                                <h5>@education.Degree - @education.Field  - Grade( @education.Grade )</h5>
+                                <h6> from @education.FromYear to @education.ToYear</h6>     
+                                <p>@education.Description</p>
+                            </div>
+                        </div>
+     <p>--------------------------------------------------------------</p>   // Stupid, but works as wanted
+
+                    }
+
 
                 }
               
 
-          
-
-
-                @if (Model.Position != null)
-                {
-
-                    <h4>@Model.Position</h4>
-
-                }
-
-                @if (Model.HeadLine != null)
-                {
-
-                    <h5>@Model.HeadLine</h5>
-
-                }
-
-
-
-                @if (Model.Country != 0)
-                {
-
-                    <h6>@Model.Country</h6>
-
-                }
-
-
-
-
-                @if (Model.Summary != null)
-                {
-
-                    <p>@Model.Summary</p>
-
-                }
+           
             </div>
         </div>
     </div>

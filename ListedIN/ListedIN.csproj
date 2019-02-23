@@ -226,6 +226,10 @@
     <Compile Include="Migrations\201902231941019_EducationTable.Designer.cs">
       <DependentUpon>201902231941019_EducationTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201902232101074_EditTypeOfColumnYearInEducationTable.cs" />
+    <Compile Include="Migrations\201902232101074_EditTypeOfColumnYearInEducationTable.Designer.cs">
+      <DependentUpon>201902232101074_EditTypeOfColumnYearInEducationTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Education.cs" />
@@ -335,6 +339,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201902231941019_EducationTable.resx">
       <DependentUpon>201902231941019_EducationTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902232101074_EditTypeOfColumnYearInEducationTable.resx">
+      <DependentUpon>201902232101074_EditTypeOfColumnYearInEducationTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

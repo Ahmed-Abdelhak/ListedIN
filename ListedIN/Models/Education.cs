@@ -1,5 +1,4 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ListedIN.Models
@@ -18,11 +17,13 @@ namespace ListedIN.Models
         public string Grade { get; set; }
 
         [Display(Name = "From Year")]
-        public DateTime? FromYear { get; set; }
+        [Range(1900, 2019)]
+        public short? FromYear { get; set; }
 
 
         [Display(Name = "To Year")]
-        public DateTime? ToYear { get; set; }
+        [Range(1900, 2019)]
+        public short? ToYear { get; set; }
 
         public string Description { get; set; }
 
