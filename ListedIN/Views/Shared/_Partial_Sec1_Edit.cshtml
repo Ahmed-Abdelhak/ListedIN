@@ -1,12 +1,7 @@
 ﻿
 @model ListedIN.Models.ApplicationUser
 
-
-@using Microsoft.Ajax.Utilities
-
-
-
-
+     
 
 @using (Ajax.BeginForm("EditSec1", "Profile", new AjaxOptions()
 {
@@ -33,9 +28,8 @@
                         @Html.HiddenFor(e => e.Id)
 
 
-                    </div>
-
-
+                    </div>         
+                
                     <div>
                         @Html.LabelFor(e => e.FirstName)
                         @Html.TextBoxFor(e => e.FirstName, new { @class = "form-control" })

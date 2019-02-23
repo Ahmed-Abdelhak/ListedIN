@@ -1,19 +1,31 @@
 ﻿
+@using Microsoft.AspNet.Identity
 @model ListedIN.Models.ApplicationUser
 
 
 <div class="row" id="myProfile_Sec1">
     <div class="col-md-8">
 
-        <button type="button" class="btn btn-link" style="float: right" data-toggle="modal" data-target="#myModal">
-            Edit
-        </button>
+      
 
         <div class="thumbnail">
-       
+           
             <div class="caption">
+                @{
+                    var imgUrl = Url.Content("~/Content/images/profile/" + User.Identity.GetUserId() + ".png") + "?time=" + DateTime.Now.ToString();
 
+                        <img src="@imgUrl" height="128" width="128" style="border-radius:50%;" />
+                }
+                            
+                @using (Html.BeginForm("UploadPhoto", "Profile", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                   
+                        <input type="file" name="file" id="files" onchange="this.form.submit()" />
+                }
 
+                <button type="button" class="btn btn-primary" style="float: right" data-toggle="modal" data-target="#myModal">
+                    Edit
+                </button>
 
                 <h3> @Model.FirstName @Model.LastName </h3>
                                                 
@@ -37,7 +49,7 @@
                 @if (Model.Country != 0)
                 {
 
-                    <p>@Model.Country</p>
+                    <h6>@Model.Country</h6>
 
                 }
 

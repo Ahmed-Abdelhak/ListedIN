@@ -293,7 +293,6 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Profile\Index.cshtml" />
-    <Content Include="Views\Profile\Edit.cshtml" />
     <Content Include="Views\Shared\_Partial_Sec1.cshtml" />
     <Content Include="Views\Shared\_Partial_Sec1_Edit.cshtml" />
   </ItemGroup>

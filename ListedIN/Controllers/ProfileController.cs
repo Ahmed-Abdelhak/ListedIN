@@ -1,6 +1,9 @@
 ﻿using ListedIN.Models;
 using Microsoft.AspNet.Identity;
+using System.IO;
 using System.Linq;
+using System.Web;
+using System.Web.Hosting;
 using System.Web.Mvc;
 
 namespace ListedIN.Controllers
@@ -55,7 +58,36 @@ namespace ListedIN.Controllers
         }
 
 
-      
+        [HttpPost]
+        public ActionResult UploadPhoto(HttpPostedFileBase file)
+        {
+            var loggedId = HttpContext.User.Identity.GetUserId();
+            var user = _context.Users.Single(c => c.Id == loggedId);
+
+
+            if (file != null && file.ContentLength > 0)
+            {
+               
+                var id = user.Id;
+                var fileExt = Path.GetExtension(file.FileName);
+                var fnm = id + ".png";
+                if (fileExt.ToLower().EndsWith(".png") || fileExt.ToLower().EndsWith(".jpg"))// Important for security if saving in webroot
+                {
+                    var filePath = HostingEnvironment.MapPath("~/Content/images/profile/") + fnm;
+                    var directory = new DirectoryInfo(HostingEnvironment.MapPath("~/Content/images/profile/"));
+                    if (directory.Exists == false)
+                    {
+                        directory.Create();
+                    }
+                    ViewBag.FilePath = filePath.ToString();
+                    file.SaveAs(filePath);
+                    return PartialView("_Partial_Sec1_Edit",user);
+                }
+                
+            }
+            return View("Index", user);
+        }
+
 
 
 
