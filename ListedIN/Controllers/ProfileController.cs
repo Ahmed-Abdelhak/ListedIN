@@ -45,6 +45,7 @@ namespace ListedIN.Controllers
                                             
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult EditSec1(ApplicationUser user)
         {
             var userEdit = _context.Users.Find(user.Id);
