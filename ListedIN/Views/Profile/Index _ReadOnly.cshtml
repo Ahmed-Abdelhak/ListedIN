@@ -1,0 +1,21 @@
+﻿@using Microsoft.AspNet.Identity
+@model ListedIN.Models.ApplicationUser                           
+
+@{
+    ViewBag.Title = "Me";
+    Layout = "../Shared/_Layout.cshtml";
+}
+
+<h2>My Profile</h2>      
+  
+
+@Html.Partial("_Partial_Sec1")
+
+
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+

@@ -24,14 +24,19 @@ namespace ListedIN.Controllers
             _context.Dispose();
         }
 
-        public ActionResult Index()
+        public ActionResult Index(string id)
         {
-            var loggedId = HttpContext.User.Identity.GetUserId();
-            var user = _context.Users.Single(c => c.Id == loggedId);
+            if (id != User.Identity.GetUserId())
+            {
+               var readOnlyUser =  _context.Users.Single(c => c.Id == id);
+                return View("Index _ReadOnly",readOnlyUser);
+            }
+
+            var user = _context.Users.Single(c => c.Id == id);
 
             return View(user);
         }
-
+                                            
 
         [HttpPost]
         public ActionResult EditSec1(ApplicationUser user)
@@ -81,7 +86,7 @@ namespace ListedIN.Controllers
                     }
                     ViewBag.FilePath = filePath.ToString();
                     file.SaveAs(filePath);
-                    return PartialView("_Partial_Sec1_Edit",user);
+                    return View("Index", user);
                 }
                 
             }

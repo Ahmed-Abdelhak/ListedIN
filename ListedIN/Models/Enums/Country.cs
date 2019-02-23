@@ -2,7 +2,7 @@
 {
     public enum Country
     {
-        Default_Country,
+      
         Australia,
         England,
         France,

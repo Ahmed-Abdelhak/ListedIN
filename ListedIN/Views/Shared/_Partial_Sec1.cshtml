@@ -6,30 +6,37 @@
 <div class="row" id="myProfile_Sec1">
     <div class="col-md-8">
 
-      
+
 
         <div class="thumbnail">
-           
+
             <div class="caption">
                 @{
-                    var imgUrl = Url.Content("~/Content/images/profile/" + User.Identity.GetUserId() + ".png") + "?time=" + DateTime.Now.ToString();
+                    var imgUrl = Url.Content("~/Content/images/profile/" + Model.Id + ".png") + "?time=" + DateTime.Now.ToString();
 
-                        <img src="@imgUrl" height="128" width="128" style="border-radius:50%;" />
+                    <img src="@imgUrl" height="128" width="128" style="border-radius:50%;" />
                 }
-                            
-                @using (Html.BeginForm("UploadPhoto", "Profile", FormMethod.Post, new { enctype = "multipart/form-data" }))
+
+
+
+
+                @if (User.Identity.GetUserId() == Model.Id)
                 {
-                   
-                        <input type="file" name="file" id="files" onchange="this.form.submit()" />
-                }
+                    using (Html.BeginForm("UploadPhoto", "Profile", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
 
-                <button type="button" class="btn btn-primary" style="float: right" data-toggle="modal" data-target="#myModal">
-                    Edit
-                </button>
+                        <input type="file" name="file" id="files" onchange="this.form.submit()" />
+                    }
+                    <button type="button" class="btn btn-primary" style="float: right" data-toggle="modal" data-target="#myModal">
+                        Edit
+                    </button>
+
+                }
+              
 
                 <h3> @Model.FirstName @Model.LastName </h3>
-                                                
-                
+
+
                 @if (Model.Position != null)
                 {
 
@@ -43,8 +50,8 @@
                     <h5>@Model.HeadLine</h5>
 
                 }
-                      
-              
+
+
 
                 @if (Model.Country != 0)
                 {
@@ -53,8 +60,8 @@
 
                 }
 
-              
-              
+
+
 
                 @if (Model.Summary != null)
                 {
