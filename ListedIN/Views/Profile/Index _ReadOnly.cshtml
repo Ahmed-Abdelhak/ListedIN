@@ -1,15 +1,15 @@
 ﻿@using Microsoft.AspNet.Identity
-@model ListedIN.Models.ApplicationUser                           
+@model ListedIN.ViewModels.ProfileViewModel                          
 
 @{
     ViewBag.Title = "Me";
     Layout = "../Shared/_Layout.cshtml";
 }
 
-<h2>@Model.FirstName's Profile</h2>      
+<h2>@Model.User.FirstName's Profile</h2>      
   
 
-@Html.Partial("_Partial_Sec1")
+@Html.Partial("_Partial_Sec1",Model.User)
 
 
 

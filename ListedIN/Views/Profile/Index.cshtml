@@ -1,5 +1,5 @@
 ﻿@using Microsoft.AspNet.Identity
-@model ListedIN.Models.ApplicationUser                           
+@model ListedIN.ViewModels.ProfileViewModel                          
 
 @{
     ViewBag.Title = "Me";
@@ -8,13 +8,15 @@
 
 <h2>My Profile</h2>      
   
+       
 
-@Html.Partial("_Partial_Sec1")
+@Html.Partial("_Partial_Sec1",Model.User)
 
-@Html.Partial("_Partial_Sec1_Edit")  
+@Html.Partial("_Partial_Sec1_Edit", Model.User)  
+                     
 
 
-    
+@*@Html.Partial("_Partial_Sec2")*@    
  
                     
 

@@ -1,0 +1,64 @@
+﻿                      
+@using Microsoft.AspNet.Identity
+@model ListedIN.Models.ApplicationUser
+
+
+<div class="row" id="myProfile_Sec2">
+    <div class="col-md-8">
+
+
+
+        <div class="thumbnail">
+
+            <div class="caption">
+               
+                @if (User.Identity.GetUserId() == Model.Id)
+                {
+                   
+                    <button type="button" class="btn btn-primary" style="float: right" data-toggle="modal" data-target="#myModal2">
+                        Edit
+                    </button>
+
+                }
+              
+
+          
+
+
+                @if (Model.Position != null)
+                {
+
+                    <h4>@Model.Position</h4>
+
+                }
+
+                @if (Model.HeadLine != null)
+                {
+
+                    <h5>@Model.HeadLine</h5>
+
+                }
+
+
+
+                @if (Model.Country != 0)
+                {
+
+                    <h6>@Model.Country</h6>
+
+                }
+
+
+
+
+                @if (Model.Summary != null)
+                {
+
+                    <p>@Model.Summary</p>
+
+                }
+            </div>
+        </div>
+    </div>
+</div>
+

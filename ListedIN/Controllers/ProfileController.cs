@@ -1,4 +1,5 @@
 ﻿using ListedIN.Models;
+using ListedIN.ViewModels;
 using Microsoft.AspNet.Identity;
 using System.IO;
 using System.Linq;
@@ -26,15 +27,20 @@ namespace ListedIN.Controllers
 
         public ActionResult Index(string id)
         {
+            var profileModel = new ProfileViewModel
+            {
+                User = _context.Users.Single(c => c.Id == id), Educations = _context.Educations.ToList()
+            };
+
             if (id != User.Identity.GetUserId())
             {
-               var readOnlyUser =  _context.Users.Single(c => c.Id == id);
-                return View("Index _ReadOnly",readOnlyUser);
+
+                return View("Index _ReadOnly",profileModel);
             }
 
-            var user = _context.Users.Single(c => c.Id == id);
+          
 
-            return View(user);
+            return View(profileModel);
         }
                                             
 
@@ -57,7 +63,7 @@ namespace ListedIN.Controllers
 
             }
 
-            return View("Index", userEdit);
+            return PartialView("_Partial_Sec1", userEdit);
 
 
         }
@@ -68,6 +74,12 @@ namespace ListedIN.Controllers
         {
             var loggedId = HttpContext.User.Identity.GetUserId();
             var user = _context.Users.Single(c => c.Id == loggedId);
+
+            var profileModel = new ProfileViewModel
+            {
+                User = user,
+                Educations = _context.Educations.ToList()
+            };
 
 
             if (file != null && file.ContentLength > 0)
@@ -86,16 +98,15 @@ namespace ListedIN.Controllers
                     }
                     ViewBag.FilePath = filePath.ToString();
                     file.SaveAs(filePath);
-                    return View("Index", user);
+                    return View("Index", profileModel);
                 }
                 
             }
-            return View("Index", user);
+            return View("Index", profileModel);
         }
 
 
-
-
+                            
 
 
     }
