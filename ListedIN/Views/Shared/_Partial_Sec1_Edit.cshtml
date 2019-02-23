@@ -1,0 +1,105 @@
+﻿
+@model ListedIN.Models.ApplicationUser
+
+
+@using Microsoft.Ajax.Utilities
+
+
+
+
+
+@using (Ajax.BeginForm("EditSec1", "Profile", new AjaxOptions()
+{
+    Confirm = "Are you Sure ?",
+    HttpMethod = "Post",
+    UpdateTargetId = "myProfile_Sec1",
+    InsertionMode = InsertionMode.Replace,
+    OnSuccess = "$('#myModal').modal('hide') "
+
+
+}))
+{
+
+
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Edit</h4>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        @Html.HiddenFor(e => e.Id)
+
+
+                    </div>
+
+
+                    <div>
+                        @Html.LabelFor(e => e.FirstName)
+                        @Html.TextBoxFor(e => e.FirstName, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(e => e.FirstName)
+                    </div>
+                    <div>
+                        @Html.LabelFor(e => e.LastName)
+                        @Html.TextBoxFor(e => e.LastName, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(e => e.LastName)
+                    </div>
+
+                    <div>
+                        @Html.LabelFor(e => e.HeadLine)
+                        @Html.TextBoxFor(e => e.HeadLine, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(e => e.HeadLine)
+                    </div>
+
+                    <div>
+                        @Html.LabelFor(e => e.Position)
+                        @Html.TextBoxFor(e => e.Position, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(e => e.Position)
+                    </div>
+                    <div>
+                        @Html.LabelFor(e => e.Country)
+                        @Html.EnumDropDownListFor(e => e.Country, "Select Country", new { @class = "form-control" })
+                        @Html.ValidationMessageFor(e => e.Country)
+                    </div>
+
+
+
+                    <div>
+                        @Html.LabelFor(e => e.Summary)
+                        @Html.TextAreaFor(e => e.Summary, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(e => e.Summary)
+                    </div>
+
+
+
+
+
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+}
+
+
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")   
+
+}
+
+
+
+
