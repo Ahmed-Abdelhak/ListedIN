@@ -309,6 +309,7 @@
     <Content Include="Views\Profile\Index _ReadOnly.cshtml" />
     <Content Include="Views\Shared\_Partial_Sec2.cshtml" />
     <Content Include="Views\Shared\_Partial_Sec2_Edit.cshtml" />
+    <Content Include="Views\Shared\_Partial_Sec2_Add.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

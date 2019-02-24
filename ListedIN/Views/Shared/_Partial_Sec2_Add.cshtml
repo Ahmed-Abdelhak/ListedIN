@@ -1,5 +1,4 @@
-﻿@using Microsoft.AspNet.Identity
-@model ListedIN.ViewModels.ProfileViewModel
+﻿@model ListedIN.ViewModels.ProfileViewModel
 
 @{
     foreach (var education in Model.Educations)
@@ -12,7 +11,7 @@
             InsertionMode = InsertionMode.Replace,
             OnSuccess = "$('.close').click()"
 
-    }))
+        }))
         {
 
 
@@ -23,9 +22,8 @@
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                             <h4 class="modal-title" id="myModalLabel">Edit</h4>
                         </div>
-                        <div class="modal-body">   
-                            @Html.HiddenFor(e => education.Id)  
-                            @Html.HiddenFor(e=>education.fk_User)
+                        <div class="modal-body">
+                            @Html.HiddenFor(e => education.Id)
                             <div>
 
                                 @Html.LabelFor(e => e.Education.Name)

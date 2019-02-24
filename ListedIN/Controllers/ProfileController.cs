@@ -25,6 +25,7 @@ namespace ListedIN.Controllers
             _context.Dispose();
         }
 
+        [AllowAnonymous]
         public ActionResult Index(string id)
         {
             var profileModel = new ProfileViewModel
@@ -111,8 +112,7 @@ namespace ListedIN.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult EditSec2(Education education)
         {
-
-            var listOfEdus = _context.Educations.ToList();
+            var listOfEdus = _context.Educations.Where(e => e.fk_User == education.fk_User).ToList();
 
             if (education.Name != null)
             {
@@ -127,8 +127,7 @@ namespace ListedIN.Controllers
                 eduEdit.FromYear = education.FromYear;
                 eduEdit.ToYear = education.ToYear;
                 _context.SaveChanges();
-                var listOfEdu = _context.Educations.ToList();
-                return PartialView("_Partial_Sec2", listOfEdu);
+                return PartialView("_Partial_Sec2", listOfEdus);
             }
             return PartialView("_Partial_Sec2", listOfEdus);
 

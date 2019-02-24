@@ -1,5 +1,4 @@
-﻿
-@using Microsoft.AspNet.Identity
+﻿@using Microsoft.AspNet.Identity
 @model List<ListedIN.Models.Education>
 
 
@@ -26,29 +25,28 @@
                                         </button>
                                     }
                                 }
-                                    <h4>@education.Name</h4>
-                                    <h5>@education.Degree - @education.Field  - Grade ( @education.Grade )</h5>
-                                    @{
-                                        if (education.FromYear != null && education.ToYear != null)
-                                        {
-                                            <h6> from @education.FromYear to @education.ToYear</h6>
-                                        }
+                                <h4>@education.Name</h4>
+                                <h5>@education.Degree - @education.Field  - Grade ( @education.Grade )</h5>
+                                @{
+                                    if (education.FromYear != null && education.ToYear != null)
+                                    {
+                                        <h6> from @education.FromYear to @education.ToYear</h6>
                                     }
-
-
-                                        <p>@education.Description</p>
-                                    </div>
-                                </div>
-
                                 }
 
 
-                                }
-
-
-
+                                <p>@education.Description</p>
                             </div>
                         </div>
-                    </div>
-                </div>
 
+                    }
+
+
+                }
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
