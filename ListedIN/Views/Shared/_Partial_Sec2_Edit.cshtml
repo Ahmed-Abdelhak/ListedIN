@@ -1,0 +1,90 @@
+﻿@model ListedIN.ViewModels.ProfileViewModel
+
+@{
+    foreach (var education in Model.Educations)
+    {
+        using (Ajax.BeginForm("EditSec2", "Profile", new AjaxOptions()
+        {
+            Confirm = "Are you Sure ?",
+            HttpMethod = "Post",
+            UpdateTargetId = "myProfile_Sec2",
+            InsertionMode = InsertionMode.Replace,
+            OnSuccess = "$('.close').click()"
+
+    }))
+        {
+
+
+            <div class="modal fade" id="myModal-@education.Id" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="myModalLabel">Edit</h4>
+                        </div>
+                        <div class="modal-body">   
+                            @Html.HiddenFor(e => education.Id)
+                            <div>
+
+                                @Html.LabelFor(e => e.Education.Name)
+                                @Html.TextBoxFor(e => education.Name, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(e => education.Name)
+
+                                <div>
+                                    @Html.LabelFor(e => e.Education.Degree)
+                                    @Html.TextBoxFor(e => education.Degree, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(e => education.Degree)
+                                </div>
+
+
+                                <div>
+                                    @Html.LabelFor(e => e.Education.Field)
+                                    @Html.TextBoxFor(e => education.Field, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(e => education.Field)
+                                </div>
+
+
+                                <div>
+                                    @Html.LabelFor(e => e.Education.Grade)
+                                    @Html.TextBoxFor(e => education.Grade, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(e => education.Grade)
+                                </div>
+                                <div>
+                                    @Html.LabelFor(e => e.Education.FromYear)
+                                    @Html.TextBoxFor(e => education.FromYear, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(e => education.FromYear)
+                                </div>
+
+                                <div>
+                                    @Html.LabelFor(e => e.Education.ToYear)
+                                    @Html.TextBoxFor(e => education.ToYear, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(e => education.ToYear)
+                                </div>
+
+                                <div>
+                                    @Html.LabelFor(e => e.Education.Description)
+                                    @Html.TextBoxFor(e => education.Description, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(e => education.Description)
+                                </div>
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                @Html.AntiForgeryToken()
+                                <input type="submit" value="Save" class="btn btn-primary" />
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        }
+    }
+}
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+
+}

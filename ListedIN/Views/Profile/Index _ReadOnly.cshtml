@@ -2,7 +2,7 @@
 @model ListedIN.ViewModels.ProfileViewModel                          
 
 @{
-    ViewBag.Title = "Me";
+    ViewBag.Title = @Model.User.FirstName.ToString() + " " +  @Model.User.LastName.ToString() + " " + "Profile" ;
     Layout = "../Shared/_Layout.cshtml";
 }
 
@@ -10,6 +10,7 @@
   
 
 @Html.Partial("_Partial_Sec1",Model.User)
+@Html.Partial("_Partial_Sec2", Model.Educations)
 
 
 

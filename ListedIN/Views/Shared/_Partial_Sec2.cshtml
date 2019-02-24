@@ -1,6 +1,6 @@
-﻿                      
+﻿
 @using Microsoft.AspNet.Identity
-@model ListedIN.ViewModels.ProfileViewModel
+@model List<ListedIN.Models.Education>
 
 
 <div class="row" id="myProfile_Sec2">
@@ -10,34 +10,45 @@
 
         <div class="thumbnail">
             <div class="caption">
-            <p>Education</p>
+                <p>Education</p>
 
                 @{
-                    foreach (var education in Model.Educations)
+                    foreach (var education in Model)
                     {
-                
+
                         <div class="row">
-                            <div class="col-md-12">    
-                                <button type="button" class="btn btn-primary" style="float: right" data-toggle="modal" data-target="#myModal2">
-                                    Edit
-                                </button> 
-                                <h4>@education.Name</h4>
-                                <h5>@education.Degree - @education.Field  - Grade( @education.Grade )</h5>
-                                <h6> from @education.FromYear to @education.ToYear</h6>     
-                                <p>@education.Description</p>
+                            <div class="col-md-12">
+                                @{
+                                    if (User.Identity.GetUserId() == education.fk_User)
+                                    {
+                                        <button type="button" class="btn btn-primary" style="float: right" data-toggle="modal" data-target="#myModal-@education.Id">
+                                            Edit
+                                        </button>
+                                    }
+                                }
+                                    <h4>@education.Name</h4>
+                                    <h5>@education.Degree - @education.Field  - Grade ( @education.Grade )</h5>
+                                    @{
+                                        if (education.FromYear != null && education.ToYear != null)
+                                        {
+                                            <h6> from @education.FromYear to @education.ToYear</h6>
+                                        }
+                                    }
+
+
+                                        <p>@education.Description</p>
+                                    </div>
+                                </div>
+
+                                }
+
+
+                                }
+
+
+
                             </div>
                         </div>
-     <p>--------------------------------------------------------------</p>   // Stupid, but works as wanted
-
-                    }
-
-
-                }
-              
-
-           
-            </div>
-        </div>
-    </div>
-</div>
+                    </div>
+                </div>
 

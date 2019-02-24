@@ -80,7 +80,7 @@ namespace ListedIN.Controllers
             var profileModel = new ProfileViewModel
             {
                 User = user,
-                Educations = _context.Educations.ToList()
+                Educations = _context.Educations.Where(e=>e.fk_User == loggedId).ToList()
             };
 
 
@@ -107,9 +107,31 @@ namespace ListedIN.Controllers
             return View("Index", profileModel);
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditSec2(Education education)
+        {
 
-                            
+            var listOfEdus = _context.Educations.ToList();
 
+            if (education.Name != null)
+            {
+                var eduEdit = _context.Educations.Single(e => e.Id == education.Id);
 
+                //AutoMapper should do this crappy code
+                eduEdit.Name = education.Name;
+                eduEdit.Degree = education.Degree;
+                eduEdit.Grade = education.Grade;
+                eduEdit.Field = education.Field;
+                eduEdit.Description = education.Description;
+                eduEdit.FromYear = education.FromYear;
+                eduEdit.ToYear = education.ToYear;
+                _context.SaveChanges();
+                var listOfEdu = _context.Educations.ToList();
+                return PartialView("_Partial_Sec2", listOfEdu);
+            }
+            return PartialView("_Partial_Sec2", listOfEdus);
+
+        }
     }
 }

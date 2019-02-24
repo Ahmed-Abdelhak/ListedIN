@@ -7,6 +7,8 @@ namespace ListedIN.ViewModels
     {
 
         public ApplicationUser User { get; set; }
-        public IList<Education> Educations { get; set; }    
+        public List<Education> Educations { get; set; }
+
+        public Education Education { get; set; }
     }
 }

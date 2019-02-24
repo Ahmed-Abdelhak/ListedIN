@@ -6,7 +6,8 @@ namespace ListedIN.Models
     public class Education
     {
         public int Id { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Education Name is Required")]
+        [Display(Name = "Education Name")]
         public string Name { get; set; }
 
         public string Degree { get; set; }
