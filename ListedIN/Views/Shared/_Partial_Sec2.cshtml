@@ -1,5 +1,5 @@
 ﻿@using Microsoft.AspNet.Identity
-@model List<ListedIN.Models.Education>
+@model ListedIN.ViewModels.ProfileViewModel
 
 
 <div class="row" id="myProfile_Sec2">
@@ -8,10 +8,15 @@
 
 
         <div class="thumbnail">
-            <div class="caption">  
-                <button type="button" class="btn btn-success" style="float: right" data-toggle="modal" data-target="#myModal-AddSec2">
-                    Add
-                </button>  
+            <div class="caption">   
+                @{
+                    if (User.Identity.GetUserId() == Model.User.Id)
+                    {
+                        <button type="button" class="btn btn-success" style="float: right" data-toggle="modal" data-target="#myModal-AddSec2">
+                            Add
+                        </button>
+                    }
+                }
                 <p>Education</p>
              
                   <br>
@@ -19,7 +24,7 @@
                 @{  
                    
                     
-                    foreach (var education in Model)
+                    foreach (var education in Model.Educations)
                     {
 
                         <div class="row">

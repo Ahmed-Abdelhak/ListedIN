@@ -115,7 +115,12 @@ namespace ListedIN.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult EditSec2(Education education)
         {
-            var listOfEdus = _context.Educations.Where(e => e.fk_User == education.fk_User).ToList();
+            var model = new ProfileViewModel
+            {
+                User = _context.Users.SingleOrDefault(e => e.Id == education.fk_User),
+                Educations = _context.Educations.Where(e => e.fk_User == education.fk_User).ToList()
+            };
+            //var listOfEdus = _context.Educations.Where(e => e.fk_User == education.fk_User).ToList();
 
             if (education.Name != null)
             {
@@ -130,30 +135,40 @@ namespace ListedIN.Controllers
                 eduEdit.FromYear = education.FromYear;
                 eduEdit.ToYear = education.ToYear;
                 _context.SaveChanges();
-                return PartialView("_Partial_Sec2", listOfEdus);
+                return PartialView("_Partial_Sec2", model);
             }
 
-            return PartialView("_Partial_Sec2", listOfEdus);
-
+            return PartialView("_Partial_Sec2", model);
+                                                            
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult AddSec2(Education education)
         {
-            var listBeforeAdd = _context.Educations.Where(e => e.fk_User == education.fk_User).ToList();
+
+            var model = new ProfileViewModel
+            {
+                User = _context.Users.SingleOrDefault(e=>e.Id == education.fk_User),
+              Educations = _context.Educations.Where(e => e.fk_User == education.fk_User).ToList()
+        };
+            
 
 
             if (education.Name != null)
             {
                 _context.Educations.Add(education);
                 _context.SaveChanges();
-                var listOfEdus = _context.Educations.Where(e => e.fk_User == education.fk_User).ToList();
-                return PartialView("_Partial_Sec2", listOfEdus);
+                var modelAdd = new ProfileViewModel
+                {
+                    User = _context.Users.SingleOrDefault(e => e.Id == education.fk_User),
+                    Educations = _context.Educations.Where(e => e.fk_User == education.fk_User).ToList()
+                };
+                return PartialView("_Partial_Sec2", modelAdd);
 
             }
 
-            return PartialView("_Partial_Sec2", listBeforeAdd);
+            return PartialView("_Partial_Sec2", model);
 
         }
 
