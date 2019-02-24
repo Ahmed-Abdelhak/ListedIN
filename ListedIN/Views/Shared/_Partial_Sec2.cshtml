@@ -8,10 +8,17 @@
 
 
         <div class="thumbnail">
-            <div class="caption">
+            <div class="caption">  
+                <button type="button" class="btn btn-success" style="float: right" data-toggle="modal" data-target="#myModal-AddSec2">
+                    Add
+                </button>  
                 <p>Education</p>
-
-                @{
+             
+                  <br>
+                <br/>
+                @{  
+                   
+                    
                     foreach (var education in Model)
                     {
 
@@ -22,7 +29,9 @@
                                     {
                                         <button type="button" class="btn btn-primary" style="float: right" data-toggle="modal" data-target="#myModal-@education.Id">
                                             Edit
-                                        </button>
+                                        </button>            
+                                        <a class="btn btn-danger" style="float: right" onclick="Delete(@education.Id)">Delete</a>
+
                                     }
                                 }
                                 <h4>@education.Name</h4>
@@ -49,4 +58,18 @@
             </div>
         </div>
     </div>
-</div>
+</div>  
+
+
+    <script>
+        function Delete(id) {
+            var result = confirm("Confirm the Delete Process ?");
+
+            if (result) {
+                window.location.replace("/Profile/Delete/" + id);
+            }
+        }
+
+
+    </script> 
+

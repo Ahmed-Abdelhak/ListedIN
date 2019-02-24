@@ -31,20 +31,20 @@ namespace ListedIN.Controllers
             var profileModel = new ProfileViewModel
             {
                 User = _context.Users.Single(c => c.Id == id),
-                Educations = _context.Educations.Where(e=>e.fk_User == id).ToList()
+                Educations = _context.Educations.Where(e => e.fk_User == id).ToList()
             };
 
             if (id != User.Identity.GetUserId())
             {
 
-                return View("Index _ReadOnly",profileModel);
+                return View("Index _ReadOnly", profileModel);
             }
 
-          
+
 
             return View(profileModel);
         }
-                                            
+
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -53,7 +53,7 @@ namespace ListedIN.Controllers
             var userEdit = _context.Users.Find(user.Id);
 
             if (user.FirstName != null || user.LastName != null)
-            // AutoMapper is helpful here !
+                // AutoMapper is helpful here !
             {
                 userEdit.FirstName = user.FirstName;
                 userEdit.LastName = user.LastName;
@@ -81,17 +81,18 @@ namespace ListedIN.Controllers
             var profileModel = new ProfileViewModel
             {
                 User = user,
-                Educations = _context.Educations.Where(e=>e.fk_User == loggedId).ToList()
+                Educations = _context.Educations.Where(e => e.fk_User == loggedId).ToList()
             };
 
 
             if (file != null && file.ContentLength > 0)
             {
-               
+
                 var id = user.Id;
                 var fileExt = Path.GetExtension(file.FileName);
                 var fnm = id + ".png";
-                if (fileExt.ToLower().EndsWith(".png") || fileExt.ToLower().EndsWith(".jpg"))// Important for security if saving in webroot
+                if (fileExt.ToLower().EndsWith(".png") || fileExt.ToLower().EndsWith(".jpg")
+                ) // Important for security if saving in webroot
                 {
                     var filePath = HostingEnvironment.MapPath("~/Content/images/profile/") + fnm;
                     var directory = new DirectoryInfo(HostingEnvironment.MapPath("~/Content/images/profile/"));
@@ -99,12 +100,14 @@ namespace ListedIN.Controllers
                     {
                         directory.Create();
                     }
+
                     ViewBag.FilePath = filePath.ToString();
                     file.SaveAs(filePath);
                     return View("Index", profileModel);
                 }
-                
+
             }
+
             return View("Index", profileModel);
         }
 
@@ -129,7 +132,43 @@ namespace ListedIN.Controllers
                 _context.SaveChanges();
                 return PartialView("_Partial_Sec2", listOfEdus);
             }
+
             return PartialView("_Partial_Sec2", listOfEdus);
+
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AddSec2(Education education)
+        {
+            var listBeforeAdd = _context.Educations.Where(e => e.fk_User == education.fk_User).ToList();
+
+
+            if (education.Name != null)
+            {
+                _context.Educations.Add(education);
+                _context.SaveChanges();
+                var listOfEdus = _context.Educations.Where(e => e.fk_User == education.fk_User).ToList();
+                return PartialView("_Partial_Sec2", listOfEdus);
+
+            }
+
+            return PartialView("_Partial_Sec2", listBeforeAdd);
+
+        }
+
+
+        public ActionResult Delete(int id)
+        {
+           var edu= _context.Educations.SingleOrDefault(e=>e.Id == id);
+
+            var indexId = edu.fk_User; 
+            if (edu != null)
+            {
+                _context.Educations.Remove(edu);
+                _context.SaveChanges();
+            }
+            return RedirectToAction("Index", new { id = indexId });
 
         }
     }
