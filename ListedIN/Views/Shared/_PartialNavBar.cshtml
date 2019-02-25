@@ -1,27 +1,27 @@
 ﻿@using Microsoft.AspNet.Identity
-  @{    
-      if (User.Identity.IsAuthenticated)
-      {
+@{
+    if (User.Identity.IsAuthenticated)
+    {
 
 
-          <li>                
-              @using (Html.BeginForm("Index", "Search", FormMethod.Get))
-              {
-                  @Html.TextBox("first", null, new { placeholder = "Search", @class = "form-control", style="display:inline" })
-                  @*<input type="submit" style="display:inline" />*@
-                
-              }
-          </li>   
-       
-          var userId = User.Identity.GetUserId();
+        <li>           
+            @using (Html.BeginForm("Index", "Search"))
+            {
+                @Html.TextBox("search", null, new { placeholder = "Search", @class = "form-control", style = "display:inline" })
+                @*<input type="submit" style="display:inline" />*@
 
-                
-          <li>@Html.ActionLink("Home", "Index", "Home")</li>
-          <li>@Html.ActionLink("Profile", "Index", "Profile", new {id = userId}, null)</li> 
+            }
+        </li>
 
-      }
-  }
-              
+        var userId = User.Identity.GetUserId();
+
+
+        <li>@Html.ActionLink("Home", "Index", "Home")</li>
+        <li>@Html.ActionLink("Profile", "Index", "Profile", new { id = userId }, null)</li>
+
+    }
+}
+
 
 
 

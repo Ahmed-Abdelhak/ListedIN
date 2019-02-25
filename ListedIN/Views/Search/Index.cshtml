@@ -78,6 +78,16 @@
                                    }
        else
        {
-           <h2>No Users Found matched your Search, please try again</h2>
+           <p>No Users Found matched your Search, please try again</p>   
+
+           using (Html.BeginForm("Index", "Search", FormMethod.Get))
+            {
+                @Html.TextBox("first", null, new { placeholder = "First Name", @class = "form-control" })
+                <br/>
+                @Html.TextBox("last", null, new { placeholder = "Last Name", @class = "form-control" })
+                <br/>
+                <input type="submit" style="" class="btn btn-primary" value="Search" />
+            }
+                         
        }
    }
