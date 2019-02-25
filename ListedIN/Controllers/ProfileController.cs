@@ -25,7 +25,7 @@ namespace ListedIN.Controllers
             _context.Dispose();
         }
 
-        [AllowAnonymous]
+       
         public ActionResult Index(string id)
         {
             var profileModel = new ProfileViewModel
@@ -53,7 +53,7 @@ namespace ListedIN.Controllers
             var userEdit = _context.Users.Find(user.Id);
 
             if (user.FirstName != null || user.LastName != null)
-                // AutoMapper is helpful here !
+            // AutoMapper is helpful here !
             {
                 userEdit.FirstName = user.FirstName;
                 userEdit.LastName = user.LastName;
@@ -139,7 +139,7 @@ namespace ListedIN.Controllers
             }
 
             return PartialView("_Partial_Sec2", model);
-                                                            
+
         }
 
         [HttpPost]
@@ -149,10 +149,10 @@ namespace ListedIN.Controllers
 
             var model = new ProfileViewModel
             {
-                User = _context.Users.SingleOrDefault(e=>e.Id == education.fk_User),
-              Educations = _context.Educations.Where(e => e.fk_User == education.fk_User).ToList()
-        };
-            
+                User = _context.Users.SingleOrDefault(e => e.Id == education.fk_User),
+                Educations = _context.Educations.Where(e => e.fk_User == education.fk_User).ToList()
+            };
+
 
 
             if (education.Name != null)
@@ -172,19 +172,34 @@ namespace ListedIN.Controllers
 
         }
 
-
+        [HttpPost]
+        [OutputCache(Duration = 0,NoStore = true,VaryByParam = "*")]
         public ActionResult Delete(int id)
         {
-           var edu= _context.Educations.SingleOrDefault(e=>e.Id == id);
+            var edu = _context.Educations.SingleOrDefault(e => e.Id == id);
 
-            var indexId = edu.fk_User; 
+            var model = new ProfileViewModel
+            {
+                User = _context.Users.SingleOrDefault(e => e.Id == edu.fk_User),
+                Educations = _context.Educations.Where(e => e.fk_User == edu.fk_User).ToList()
+            };
+
             if (edu != null)
             {
+                var userId = edu.fk_User;
                 _context.Educations.Remove(edu);
                 _context.SaveChanges();
+                var modelDel = new ProfileViewModel
+                {
+                    User = _context.Users.SingleOrDefault(e => e.Id == userId),
+                   Educations = _context.Educations.Where(e => e.fk_User == userId).ToList()
+                };
+                return PartialView("_Partial_Sec2", modelDel);
             }
-            return RedirectToAction("Index", new { id = indexId });
 
+            //return RedirectToAction("Index", new { id = indexId });
+
+            return PartialView("_Partial_Sec2", model);
         }
     }
 }

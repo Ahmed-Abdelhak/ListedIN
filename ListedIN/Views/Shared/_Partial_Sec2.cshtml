@@ -27,7 +27,7 @@
                     foreach (var education in Model.Educations)
                     {
 
-                        <div class="row">
+                        <div class="row" id="row-@education.Id">
                             <div class="col-md-12">
                                 @{
                                     if (User.Identity.GetUserId() == education.fk_User)
@@ -36,7 +36,6 @@
                                             Edit
                                         </button>            
                                         <a class="btn btn-danger" style="float: right" onclick="Delete(@education.Id)">Delete</a>
-
                                     }
                                 }
                                 <h4>@education.Name</h4>
@@ -64,17 +63,68 @@
         </div>
     </div>
 </div>  
+       
+  
 
 
-    <script>
+<script>
         function Delete(id) {
-            var result = confirm("Confirm the Delete Process ?");
 
-            if (result) {
-                window.location.replace("/Profile/Delete/" + id);
-            }
+            bootbox.confirm("Confirm the Delete Process ?",
+                function(result) {
+
+                    if (result) {
+                        $.ajax({
+                            type: "POST",
+                            url: `/Profile/Delete/${id}`,
+
+
+                            success: function(result) {
+                                //$(document.body).load(location.href);
+
+                                $("#myProfile_Sec2").load(location.href + " #myProfile_Sec2>*", "");
+                            }
+                        
+
+                    });
+
+
+                    }
+                });
+
         }
 
 
-    </script> 
+    </script>
 
+           
+
+
+
+@*@section scripts
+    {
+        <script>
+
+            $(document).ready(function() {
+
+
+                $("#myProfile_Sec2 .js-delete").on("click", ".js-delete", function() {
+
+                    var button = $(this);
+
+                    bootbox.confirm("Confirm the Delete Process ?",
+                        function(result) {
+
+                            if (result) {
+                                $.ajax({
+                                    method: "DELETE",
+                                    url: `/Profile/Delete/${id}`
+
+                                });
+
+                });
+
+            });
+        </script>
+
+    }*@
