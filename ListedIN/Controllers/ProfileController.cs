@@ -73,6 +73,7 @@ namespace ListedIN.Controllers
 
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult UploadPhoto(HttpPostedFileBase file)
         {
             var loggedId = HttpContext.User.Identity.GetUserId();
@@ -103,12 +104,12 @@ namespace ListedIN.Controllers
 
                     ViewBag.FilePath = filePath.ToString();
                     file.SaveAs(filePath);
-                    return View("Index", profileModel);
                 }
 
             }
+            return PartialView("_Partial_Sec1", profileModel.User);
 
-            return View("Index", profileModel);
+
         }
 
         [HttpPost]

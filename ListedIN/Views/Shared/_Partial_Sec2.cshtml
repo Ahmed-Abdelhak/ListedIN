@@ -19,7 +19,7 @@
                 }
                 <p>Education</p>
              
-                  <br>
+                <hr />
                 <br/>
                 @{  
                    
@@ -39,7 +39,7 @@
                                     }
                                 }
                                 <h4>@education.Name</h4>
-                                <h5>@education.Degree - @education.Field  - Grade ( @education.Grade )</h5>
+                                <h5>@education.Degree  @education.Field   @education.Grade </h5>
                                 @{
                                     if (education.FromYear != null && education.ToYear != null)
                                     {
@@ -51,7 +51,7 @@
                                 <p>@education.Description</p>
                             </div>
                         </div>
-
+                        <hr />
                     }
 
 
