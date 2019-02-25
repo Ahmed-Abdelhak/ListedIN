@@ -30,3 +30,7 @@ textarea {
     color:	red;
 }
 
+ul.nav.navbar-nav {
+    display: flex;
+    align-items: center;
+}

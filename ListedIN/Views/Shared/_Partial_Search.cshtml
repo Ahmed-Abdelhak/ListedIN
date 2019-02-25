@@ -1,0 +1,22 @@
+﻿
+    <h4> Find a colleague </h4>
+    <hr />
+
+
+    @using (Html.BeginForm("Index", "Search", FormMethod.Get))
+    {
+        @Html.TextBox("first", null, new { placeholder = "First Name", @class = "form-control" })
+        <br/>
+        @Html.TextBox("last", null, new { placeholder = "Last Name", @class = "form-control" })
+        <input type="submit" style="float: right" class="btn btn-primary" value="Search" />
+    }
+                         
+
+
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+
+}
+

@@ -199,6 +199,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ProfileController.cs" />
+    <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -313,6 +314,8 @@
     <Content Include="Views\Shared\_Partial_Sec2_Edit.cshtml" />
     <Content Include="Views\Shared\_Partial_Sec2_Add.cshtml" />
     <Content Include="Views\Shared\_Partial_Sec1_Upload.cshtml" />
+    <Content Include="Views\Shared\_Partial_Search.cshtml" />
+    <Content Include="Views\Search\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
