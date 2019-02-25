@@ -25,7 +25,7 @@ namespace ListedIN.Controllers
         {
             if (first != null || last != null)
             {
-                var users = _context.Users.Where(u => u.FirstName.StartsWith(first) || u.LastName.StartsWith(last))
+                var users = _context.Users.Where(u => u.FirstName.Contains(first) && u.LastName.Contains(last) || first == null || last == null)
                     .ToList();
                 return View(users);
             }
