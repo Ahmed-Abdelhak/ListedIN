@@ -20,10 +20,11 @@
                 <p>Education</p>
              
                 <hr />
-                <br/>
-                @{  
-                   
-                    
+                <br/>  
+                <div id="edu-table">
+                @{
+
+
                     foreach (var education in Model.Educations)
                     {
 
@@ -34,30 +35,33 @@
                                     {
                                         <button type="button" class="btn btn-primary" style="float: right" data-toggle="modal" data-target="#myModal-@education.Id">
                                             Edit
-                                        </button>            
+                                        </button>
                                         <a class="btn btn-danger" style="float: right" onclick="Delete(@education.Id)">Delete</a>
                                     }
                                 }
-                                <h4>@education.Name</h4>
-                                <h5>@education.Degree  @education.Field   @education.Grade </h5>
-                                @{
-                                    if (education.FromYear != null && education.ToYear != null)
-                                    {
-                                        <h6> from @education.FromYear to @education.ToYear</h6>
+                                <div id="edu-row">
+                                    <h4>@education.Name</h4>
+                                    <h5>@education.Degree  @education.Field   @education.Grade </h5>
+                                    @{
+                                        if (education.FromYear != null && education.ToYear != null)
+                                        {
+                                            <h6> from @education.FromYear to @education.ToYear</h6>
+                                        }
                                     }
-                                }
 
 
-                                <p>@education.Description</p>
+                                    <p>@education.Description</p>
+                                </div>
                             </div>
                         </div>
-                        <hr />
-                    }
 
+                            <hr />
+                    }
 
                 }
 
 
+                </div> 
 
             </div>
         </div>

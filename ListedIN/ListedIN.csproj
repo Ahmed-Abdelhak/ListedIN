@@ -316,6 +316,8 @@
     <Content Include="Views\Shared\_Partial_Sec1_Upload.cshtml" />
     <Content Include="Views\Shared\_Partial_Search.cshtml" />
     <Content Include="Views\Search\Index.cshtml" />
+    <Content Include="Views\Shared\_Partial_Sec2_Add_Render.cshtml" />
+    <Content Include="Views\Shared\_Partial_Sec2_Edit_Render.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

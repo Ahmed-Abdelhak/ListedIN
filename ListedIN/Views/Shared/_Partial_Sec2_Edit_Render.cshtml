@@ -1,0 +1,15 @@
+﻿@model ListedIN.Models.Education
+
+<div id="edu-row">
+    <h4>@Model.Name</h4>
+    <h5>@Model.Degree  @Model.Field   @Model.Grade </h5>
+    @{
+        if (Model.FromYear != null && Model.ToYear != null)             
+        {
+            <h6> from @Model.FromYear to @Model.ToYear</h6>
+        }
+    }
+
+
+    <p>@Model.Description</p>
+</div>

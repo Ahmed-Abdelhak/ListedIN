@@ -19,22 +19,22 @@
                 }
 
 
-     
+
                 @if (User.Identity.GetUserId() == Model.Id)
                 {
-                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal-upload">
+                    <button type="button" style="background-color: Transparent; background-repeat: no-repeat; border: none;cursor: pointer; overflow: hidden; outline: none;" data-toggle="modal" data-target="#myModal-upload">
                         <span class="glyphicon glyphicon-cloud-upload" aria-hidden="true"></span>
                     </button>
 
                     @*using (Html.BeginForm("UploadPhoto", "Profile", FormMethod.Post, new { enctype = "multipart/form-data" }))
 
-                    {
-                        @Html.AntiForgeryToken()
-                        <input type="file" name="file" id="files" onchange="this.form.submit()"/>
-                    }*@
+                        {
+                            @Html.AntiForgeryToken()
+                            <input type="file" name="file" id="files" onchange="this.form.submit()"/>
+                        }*@
                 }
-              
-                <hr />    <!--separator-->   
+
+                <hr />    <!--separator-->
 
                 @if (User.Identity.GetUserId() == Model.Id)
                 {
@@ -43,7 +43,7 @@
                         Edit
                     </button>
                 }
-               
+
 
 
                 <h3> @Model.FirstName @Model.LastName </h3>
@@ -85,4 +85,4 @@
         </div>
     </div>
 </div>
-          
+

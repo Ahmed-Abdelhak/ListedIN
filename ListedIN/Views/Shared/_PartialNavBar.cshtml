@@ -8,7 +8,11 @@
             @using (Html.BeginForm("Index", "Search"))
             {
                 @Html.TextBox("search", null, new { placeholder = "Search", @class = "form-control", style = "display:inline" })
-                @*<input type="submit" style="display:inline" />*@
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="submit">
+                        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                    </button>
+                </span>
 
             }
         </li>

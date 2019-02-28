@@ -1,0 +1,37 @@
+﻿@using Microsoft.AspNet.Identity
+@model ListedIN.Models.Education
+
+@{  
+                   
+                    
+   
+        <div class="row" id="row-@Model.Id">
+            <div class="col-md-12">
+                @{
+                    if (User.Identity.GetUserId() == Model.fk_User)
+                    {
+                        <button type="button" class="btn btn-primary" style="float: right" data-toggle="modal" data-target="#myModal-@Model.Id">
+                            Edit
+                        </button>
+                        <a class="btn btn-danger" style="float: right" onclick="Delete(@Model.Id)">Delete</a>
+                    }
+                }
+                <div id="edu-row">
+                    <h4>@Model.Name</h4>
+                    <h5>@Model.Degree  @Model.Field   @Model.Grade </h5>
+                    @{
+                        if (Model.FromYear != null && Model.ToYear != null)
+                        {
+                            <h6> from @Model.FromYear to @Model.ToYear</h6>
+                        }
+                    }
+
+
+                    <p>@Model.Description</p>
+                </div>
+            </div>
+        </div>
+        <hr />
+}  
+
+

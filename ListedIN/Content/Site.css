@@ -34,3 +34,13 @@ ul.nav.navbar-nav {
     display: flex;
     align-items: center;
 }
+
+.input-group-btn {
+    font-size: 0;
+    white-space: nowrap;
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin-right: 19%;
+}

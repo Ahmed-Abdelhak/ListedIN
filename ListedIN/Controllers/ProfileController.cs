@@ -1,4 +1,4 @@
-﻿using ListedIN.Models;
+using ListedIN.Models;
 using ListedIN.ViewModels;
 using Microsoft.AspNet.Identity;
 using System.IO;
@@ -160,12 +160,8 @@ namespace ListedIN.Controllers
             {
                 _context.Educations.Add(education);
                 _context.SaveChanges();
-                var modelAdd = new ProfileViewModel
-                {
-                    User = _context.Users.SingleOrDefault(e => e.Id == education.fk_User),
-                    Educations = _context.Educations.Where(e => e.fk_User == education.fk_User).ToList()
-                };
-                return PartialView("_Partial_Sec2", modelAdd);
+                
+                return PartialView("_Partial_Sec2_Add_Render", education);
 
             }
 
