@@ -31,7 +31,9 @@ namespace ListedIN.Controllers
             var profileModel = new ProfileViewModel
             {
                 User = _context.Users.Single(c => c.Id == id),
-                Educations = _context.Educations.Where(e => e.fk_User == id).ToList()
+                Educations = _context.Educations.Where(e => e.fk_User == id).ToList()    ,
+                Education = new Education()
+                
             };
 
             if (id != User.Identity.GetUserId())

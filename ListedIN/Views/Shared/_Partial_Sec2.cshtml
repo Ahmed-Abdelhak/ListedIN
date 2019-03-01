@@ -33,10 +33,10 @@
                                 @{
                                     if (User.Identity.GetUserId() == education.fk_User)
                                     {
-                                        <button type="button" class="btn btn-primary" style="float: right" data-toggle="modal" data-target="#myModal-@education.Id">
+                                        <button type="button" class="btn btn-primary edit-sec2-btn" style="float: right" data-toggle="modal" data-target="#myModal-edit" onclick="EditId(@education.Id)">
                                             Edit
-                                        </button>
-                                        <a class="btn btn-danger" style="float: right" onclick="Delete(@education.Id)">Delete</a>
+                                </button>    
+                                <a class="btn btn-danger" style="float: right" onclick="Delete(@education.Id)">Delete</a>
                                     }
                                 }
                                 <div id="edu-row">
@@ -72,63 +72,36 @@
 
 
 <script>
-        function Delete(id) {
+    function Delete(id) {
 
-            bootbox.confirm("Confirm the Delete Process ?",
-                function(result) {
+        bootbox.confirm("Confirm the Delete Process ?",
+            function(result) {
 
-                    if (result) {
-                        $.ajax({
-                            type: "POST",
-                            url: `/Profile/Delete/${id}`,
+                if (result) {
+                    $.ajax({
+                        type: "POST",
+                        url: `/Profile/Delete/${id}`,
 
 
-                            success: function(result) {
-                                //$(document.body).load(location.href);
+                        success: function(result) {
+                            //$(document.body).load(location.href);
 
-                                $("#myProfile_Sec2").load(location.href + " #myProfile_Sec2>*", "");
-                            }
+                            $("#myProfile_Sec2").load(location.href + " #myProfile_Sec2>*", "");
+                        }
                         
 
                     });
 
 
-                    }
-                });
+                }
+            });
 
-        }
+    }
+
+  
+      
 
 
     </script>
 
            
-
-
-
-@*@section scripts
-    {
-        <script>
-
-            $(document).ready(function() {
-
-
-                $("#myProfile_Sec2 .js-delete").on("click", ".js-delete", function() {
-
-                    var button = $(this);
-
-                    bootbox.confirm("Confirm the Delete Process ?",
-                        function(result) {
-
-                            if (result) {
-                                $.ajax({
-                                    method: "DELETE",
-                                    url: `/Profile/Delete/${id}`
-
-                                });
-
-                });
-
-            });
-        </script>
-
-    }*@

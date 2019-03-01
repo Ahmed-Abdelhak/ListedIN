@@ -10,10 +10,10 @@
                 @{
                     if (User.Identity.GetUserId() == Model.fk_User)
                     {
-                        <button type="button" class="btn btn-primary" style="float: right" data-toggle="modal" data-target="#myModal-@Model.Id">
+                        <button type="button" class="btn btn-primary edit-sec2-btn" style="float: right" data-toggle="modal" data-target="#myModal-edit" onclick="EditId(@Model.Id)">
                             Edit
-                        </button>
-                        <a class="btn btn-danger" style="float: right" onclick="Delete(@Model.Id)">Delete</a>
+                </button> 
+                <a class="btn btn-danger" style="float: right" onclick="Delete(@Model.Id)">Delete</a>
                     }
                 }
                 <div id="edu-row">
@@ -33,5 +33,4 @@
         </div>
         <hr />
 }  
-
 

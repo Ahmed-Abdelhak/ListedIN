@@ -43,6 +43,19 @@
     @Scripts.Render("~/bundles/jqueryunobtrusive")
     @Scripts.Render("~/bundles/jqueryval")
     @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+@RenderSection("scripts", required: false)     
+       
+
+    <script type="text/javascript">
+        var editId;
+        function EditId(id) {
+            editId = id;
+            document.getElementById("education-Id-edit").value = editId;
+        }
+
+
+    </script>
 </body>
 </html>
+    
+
