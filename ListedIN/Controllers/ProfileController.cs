@@ -32,7 +32,8 @@ namespace ListedIN.Controllers
             {
                 User = _context.Users.Single(c => c.Id == id),
                 Educations = _context.Educations.Where(e => e.fk_User == id).ToList()    ,
-                Education = new Education()
+                Education = new Education() ,
+                Skills = _context.Skills.Where(s=>s.User.Any(u=>u.Id == id)).ToList()
                 
             };
 
@@ -199,6 +200,39 @@ namespace ListedIN.Controllers
             //return RedirectToAction("Index", new { id = indexId });
 
             return PartialView("_Partial_Sec2", model);
+        }
+
+
+        [HttpPost]
+        [OutputCache(Duration = 0, NoStore = true, VaryByParam = "*")]
+        public ActionResult DeleteSkill(int id, string userid)
+        {
+            
+            var skill = _context.Skills.Single(e => e.Id == id);
+
+            var user = _context.Users.Single(u => u.Id == userid);
+            
+            _context.Entry(user).Collection("Skills").Load();   // explicitly Load the Intermediary Table
+
+            var model = new ProfileViewModel
+            {
+                User = _context.Users.Single(u => u.Id == userid),
+                Skills = _context.Skills.Where(s => s.User.Any(u => u.Id == userid)).ToList()
+            };
+
+            if (skill != null)
+            {
+               user.Skills.Remove(skill);
+                _context.SaveChanges();
+                var modelDel = new ProfileViewModel
+                {
+                    User = _context.Users.Single(u => u.Id == userid),
+                    Skills = _context.Skills.Where(s => s.User.Any(u => u.Id == userid)).ToList()
+                };
+                return PartialView("_Partial_Sec3", modelDel);
+            }
+
+            return PartialView("_Partial_Sec3", model);
         }
     }
 }
