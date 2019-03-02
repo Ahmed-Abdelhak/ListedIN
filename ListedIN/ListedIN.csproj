@@ -231,12 +231,21 @@
     <Compile Include="Migrations\201902232101074_EditTypeOfColumnYearInEducationTable.Designer.cs">
       <DependentUpon>201902232101074_EditTypeOfColumnYearInEducationTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201903020303223_SkillsTable.cs" />
+    <Compile Include="Migrations\201903020303223_SkillsTable.Designer.cs">
+      <DependentUpon>201903020303223_SkillsTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903020319270_CreateUserSkillsTable.cs" />
+    <Compile Include="Migrations\201903020319270_CreateUserSkillsTable.Designer.cs">
+      <DependentUpon>201903020319270_CreateUserSkillsTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Education.cs" />
     <Compile Include="Models\Enums\Country.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Skill.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\ProfileViewModel.cs" />
@@ -317,7 +326,6 @@
     <Content Include="Views\Shared\_Partial_Search.cshtml" />
     <Content Include="Views\Search\Index.cshtml" />
     <Content Include="Views\Shared\_Partial_Sec2_Add_Render.cshtml" />
-    <Content Include="Views\Shared\_Partial_Sec2_Edit_Render.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -352,6 +360,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201902232101074_EditTypeOfColumnYearInEducationTable.resx">
       <DependentUpon>201902232101074_EditTypeOfColumnYearInEducationTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903020303223_SkillsTable.resx">
+      <DependentUpon>201903020303223_SkillsTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903020319270_CreateUserSkillsTable.resx">
+      <DependentUpon>201903020319270_CreateUserSkillsTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

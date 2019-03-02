@@ -23,6 +23,7 @@ namespace ListedIN.Models
         public string Summary { get; set; }
 
         public IEnumerable<Education> Educations { get; set; }
+        public List<Skill> Skills { get; set; }
 
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
@@ -38,6 +39,7 @@ namespace ListedIN.Models
     {
 
         public DbSet<Education> Educations { get; set; }
+        public DbSet<Skill> Skills { get; set; }
 
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
@@ -48,5 +50,7 @@ namespace ListedIN.Models
         {
             return new ApplicationDbContext();
         }
+
+      
     }
 }
