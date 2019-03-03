@@ -261,18 +261,20 @@ namespace ListedIN.Controllers
 
             if (userSkill == null)
             {
-                var skillDes = _context.Skills.Single(s=>s.Name == skill.Name);
-                //if (skillDes != null)
-                //{
-                 
-
-                //}
-                //else
+                var skillDes = _context.Skills.SingleOrDefault(s => s.Name == skill.Name);
+                if (skillDes != null)
+                {
+                    // Maybe a SQL Injection ? :D
+                    var sql = $"INSERT INTO dbo.SkillApplicationUsers VALUES ('{skillDes.Id}','{id}')";
+                    _context.Database.ExecuteSqlCommand(sql);
+                    _context.SaveChanges();
+                }
+                else
                 {
                     user.Skills.Add(skill);
                     _context.SaveChanges();
                 }
-               
+
                 model.Skills = _context.Skills.Where(s => s.User.Any(u => u.Id == id)).ToList();
 
                 return PartialView("_Partial_Sec3", model);
