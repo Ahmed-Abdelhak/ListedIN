@@ -44,3 +44,14 @@ ul.nav.navbar-nav {
     bottom: 0;
     margin-right: 19%;
 }
+
+.input-group-skill {
+    font-size: 0;
+    white-space: nowrap;
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin-right: 49%;
+    margin-top: 7.5%;
+}

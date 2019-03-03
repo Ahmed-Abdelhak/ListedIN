@@ -1,0 +1,23 @@
+﻿@using Microsoft.AspNet.Identity
+@model ListedIN.Models.Skill
+
+
+
+<div class="row" id="row-@Model.Id">
+    <div class="col-md-12">
+        @*@{
+            if (User.Identity.GetUserId() == Model.User.Id)
+            {
+                <a class="btn btn-danger" style="float: right" onclick="Delete(@Model.Id,'@Model.User.')">Delete</a>
+            }
+        }*@
+        <div id="skill-row">
+            <h4>@Model.Name</h4>
+        </div>
+    </div>
+</div>
+
+<hr />
+                     
+
+

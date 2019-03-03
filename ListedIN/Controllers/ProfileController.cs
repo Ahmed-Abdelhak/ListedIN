@@ -25,16 +25,16 @@ namespace ListedIN.Controllers
             _context.Dispose();
         }
 
-       
+
         public ActionResult Index(string id)
         {
             var profileModel = new ProfileViewModel
             {
                 User = _context.Users.Single(c => c.Id == id),
-                Educations = _context.Educations.Where(e => e.fk_User == id).ToList()    ,
-                Education = new Education() ,
-                Skills = _context.Skills.Where(s=>s.User.Any(u=>u.Id == id)).ToList()
-                
+                Educations = _context.Educations.Where(e => e.fk_User == id).ToList(),
+                Education = new Education(),
+                Skills = _context.Skills.Where(s => s.User.Any(u => u.Id == id)).ToList()
+
             };
 
             if (id != User.Identity.GetUserId())
@@ -163,7 +163,7 @@ namespace ListedIN.Controllers
             {
                 _context.Educations.Add(education);
                 _context.SaveChanges();
-                
+
                 return PartialView("_Partial_Sec2_Add_Render", education);
 
             }
@@ -173,7 +173,7 @@ namespace ListedIN.Controllers
         }
 
         [HttpPost]
-        [OutputCache(Duration = 0,NoStore = true,VaryByParam = "*")]
+        [OutputCache(Duration = 0, NoStore = true, VaryByParam = "*")]
         public ActionResult Delete(int id)
         {
             var edu = _context.Educations.SingleOrDefault(e => e.Id == id);
@@ -192,7 +192,7 @@ namespace ListedIN.Controllers
                 var modelDel = new ProfileViewModel
                 {
                     User = _context.Users.SingleOrDefault(e => e.Id == userId),
-                   Educations = _context.Educations.Where(e => e.fk_User == userId).ToList()
+                    Educations = _context.Educations.Where(e => e.fk_User == userId).ToList()
                 };
                 return PartialView("_Partial_Sec2", modelDel);
             }
@@ -207,11 +207,11 @@ namespace ListedIN.Controllers
         [OutputCache(Duration = 0, NoStore = true, VaryByParam = "*")]
         public ActionResult DeleteSkill(int id, string userid)
         {
-            
+
             var skill = _context.Skills.Single(e => e.Id == id);
 
             var user = _context.Users.Single(u => u.Id == userid);
-            
+
             _context.Entry(user).Collection("Skills").Load();   // explicitly Load the Intermediary Table
 
             var model = new ProfileViewModel
@@ -222,7 +222,7 @@ namespace ListedIN.Controllers
 
             if (skill != null)
             {
-               user.Skills.Remove(skill);
+                user.Skills.Remove(skill);
                 _context.SaveChanges();
                 var modelDel = new ProfileViewModel
                 {
@@ -233,6 +233,53 @@ namespace ListedIN.Controllers
             }
 
             return PartialView("_Partial_Sec3", model);
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AddSec3(Skill skill, string id)
+        {
+            
+            var user = _context.Users.Single(u => u.Id == id);
+
+            _context.Entry(user).Collection("Skills").Load();     // Explicitly Load the User Skills
+
+
+            // List of User skills from the "Intermediary Table"   // Fetch skills of the User
+            var userSkills = _context.Skills.Where(s => s.User.Any(u => u.Id == id)).ToList();
+
+            //Skill that matched the Parameter
+            var userSkill = userSkills.Find(s => s.Name == skill.Name);
+
+            if (userSkill == null)
+            {
+                user.Skills.Add(skill);
+                //userSkills.Add(skill);
+                _context.SaveChanges();
+
+
+                // Add the skill to the "Skills" Table
+                var skillDb = _context.Skills.SingleOrDefault(e => e.Name == skill.Name);
+
+                if (skillDb == null)
+                {
+                    _context.Skills.Add(skill);
+                    _context.SaveChanges();
+
+                }
+
+
+            }
+
+
+            var modelDel = new ProfileViewModel
+            {
+                User = user,
+                Skills = _context.Skills.Where(s => s.User.Any(u => u.Id == id)).ToList()
+            };
+            return PartialView("_Partial_Sec3", modelDel);
+
         }
     }
 }

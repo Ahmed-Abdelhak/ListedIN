@@ -1,0 +1,65 @@
+﻿@using Microsoft.AspNet.Identity
+@model ListedIN.ViewModels.ProfileViewModel
+
+@{
+
+    using (Ajax.BeginForm("AddSec3", "Profile", new AjaxOptions()
+    {
+        HttpMethod = "Post",
+        UpdateTargetId = "myProfile_Sec3",     /* "skill-table"*/
+        InsertionMode = InsertionMode.Replace,
+
+    }))
+    {
+
+
+        <div class="modal fade" id="myModal-AddSec3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Add a new Skill</h4>
+                    </div>
+                    <div class="modal-body">
+                        @{
+                            string uId = Model.User.Id;
+                           
+                        }
+
+                        <input name="Id" type="hidden" value="@uId">
+
+                        <div class="form-group">
+                            <label>Skill</label>
+                            <input id="skill" name="skill.Name" type="text" value="" class="form-control" />
+                            <span class="input-group-skill">     
+                                @Html.AntiForgeryToken()
+                                <button class="btn btn-default" id="add-skill-btn">
+                                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                                </button>
+                            </span>
+                        </div>
+                    </div>
+
+                    @*<div class="row">
+                        <div class="col-md-4 col-sm-4">
+                            <ul id="skills" class="list-group"></ul>
+                        </div>
+                    </div>*@
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+
+    }
+}
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+
+}
+
