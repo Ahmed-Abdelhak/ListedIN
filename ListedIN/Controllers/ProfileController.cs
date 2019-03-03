@@ -240,7 +240,7 @@ namespace ListedIN.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult AddSec3(Skill skill, string id)
         {
-            
+
             var user = _context.Users.Single(u => u.Id == id);
 
             _context.Entry(user).Collection("Skills").Load();     // Explicitly Load the User Skills
@@ -249,37 +249,38 @@ namespace ListedIN.Controllers
             // List of User skills from the "Intermediary Table"   // Fetch skills of the User
             var userSkills = _context.Skills.Where(s => s.User.Any(u => u.Id == id)).ToList();
 
+
+            var model = new ProfileViewModel
+            {
+                User = user,
+                Skills = userSkills
+            };
+
             //Skill that matched the Parameter
-            var userSkill = userSkills.Find(s => s.Name == skill.Name);
+            var userSkill = userSkills.Find(s => s.Name.ToLower() == skill.Name.ToLower());
 
             if (userSkill == null)
             {
-                user.Skills.Add(skill);
-                //userSkills.Add(skill);
-                _context.SaveChanges();
+                var skillDes = _context.Skills.Single(s=>s.Name == skill.Name);
+                //if (skillDes != null)
+                //{
+                 
 
-
-                // Add the skill to the "Skills" Table
-                var skillDb = _context.Skills.SingleOrDefault(e => e.Name == skill.Name);
-
-                if (skillDb == null)
+                //}
+                //else
                 {
-                    _context.Skills.Add(skill);
+                    user.Skills.Add(skill);
                     _context.SaveChanges();
-
                 }
+               
+                model.Skills = _context.Skills.Where(s => s.User.Any(u => u.Id == id)).ToList();
 
-
+                return PartialView("_Partial_Sec3", model);
             }
-
-
-            var modelDel = new ProfileViewModel
+            else
             {
-                User = user,
-                Skills = _context.Skills.Where(s => s.User.Any(u => u.Id == id)).ToList()
-            };
-            return PartialView("_Partial_Sec3", modelDel);
-
+                return PartialView("_Partial_Sec3", model);
+            }
         }
     }
 }

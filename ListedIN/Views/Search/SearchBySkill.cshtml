@@ -1,0 +1,81 @@
+﻿@model System.Collections.Generic.List<ListedIN.Models.ApplicationUser>
+
+@{
+    ViewBag.Title = "Users Have the same Skill";
+    Layout = "../Shared/_Layout.cshtml";
+}
+
+<h2>Users have the same Skill</h2>
+
+
+@{
+  
+        foreach (var user in Model)
+        {
+
+            <div class="row" id="myProfile_Sec1">
+                <div class="col-md-8">
+
+
+
+                    <div class="thumbnail">
+
+                        <div class="caption">
+                            @{
+
+                                var imgUrl = Url.Content("~/Content/images/profile/" + user.Id + ".png") + "?time=" + DateTime.Now.ToString();
+
+                                <img id="profile-Img" src="@imgUrl" height="128" width="128" style="border-radius: 50%;" />
+
+                            }
+
+
+
+                            <hr /> <!--separator-->
+
+
+                            @Html.ActionLink("View Profile", "Index", "Profile", new { id = @user.Id }, new { @class = "btn btn-primary", style = "float:right" })
+
+                            <h3> @user.FirstName @user.LastName </h3>
+
+
+                            @if (user.Position != null)
+                            {
+
+                                <h4>@user.Position</h4>
+
+                            }
+
+                            @if (user.HeadLine != null)
+                            {
+
+                                <h5>@user.HeadLine</h5>
+
+                            }
+
+
+
+                            @if (user.Country != 0)
+                            {
+
+                                <h6>@user.Country</h6>
+
+                            }
+
+
+
+
+                            @if (user.Summary != null)
+                            {
+
+                                <p>@user.Summary</p>
+
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+                                    }
+                              
+}

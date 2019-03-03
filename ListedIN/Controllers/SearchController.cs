@@ -71,5 +71,12 @@ namespace ListedIN.Controllers
             return View();
 
         }
+
+        public ActionResult SearchBySkill(string name)
+        {
+            var users = _context.Users.Where(u => u.Skills.Any(s=>s.Name == name)).ToList();
+                   
+            return View(users);
+        }
     }
 }

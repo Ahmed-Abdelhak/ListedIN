@@ -26,25 +26,26 @@
                     @{
 
 
-                        foreach (var skill   in Model.Skills)
+                        foreach (var skill in Model.Skills)
                         {
 
                             <div class="row" id="row-@skill.Id">
                                 <div class="col-md-12">
                                     @{
-                                        if ( User.Identity.GetUserId() == Model.User.Id)
+                                        if (User.Identity.GetUserId() == Model.User.Id)
                                         {
                                             <a class="btn btn-danger" style="float: right" onclick="Delete(@skill.Id,'@Model.User.Id')">Delete</a>
                                         }
                                     }
                                     <div id="skill-row">
-                                        <h4>@skill.Name</h4>
+                                        @*<h4>@skill.Name</h4>*@
+                                        <h4>  @Html.ActionLink(skill.Name, "SearchBySkill", "Search", new { name = skill.Name }, null) </h4>
                                     </div>
                                 </div>
                             </div>
 
                             <hr />
-                                            }
+                                        }
 
                     }
 
@@ -62,19 +63,19 @@
 <script>
     function Delete(id, userid) {
         bootbox.confirm("Confirm the Delete Process ?",
-            function(result) {
+            function (result) {
 
                 if (result) {
                     $.ajax({
                         type: "POST",
-                      
+
                         url: `/Profile/DeleteSkill?id=${id}&userid=${userid}`,
 
-                        success: function(result) {
+                        success: function (result) {
 
                             $("#myProfile_Sec3").load(location.href + " #myProfile_Sec3>*", "");
-                        } ,
-                      
+                        },
+
 
 
                     });

@@ -354,6 +354,7 @@
     <Content Include="Views\Shared\_Partial_Sec3.cshtml" />
     <Content Include="Views\Shared\_Partial_Sec3_Add.cshtml" />
     <Content Include="Views\Shared\_Partial_Sec3_Add_Render.cshtml" />
+    <Content Include="Views\Search\SearchBySkill.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
