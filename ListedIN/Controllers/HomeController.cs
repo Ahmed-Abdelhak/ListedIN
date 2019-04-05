@@ -26,5 +26,11 @@ namespace ListedIN.Controllers
 
             return View();
         }
+
+        public ActionResult Hell()
+        {
+            return null;
+        }
+
     }
 }
