@@ -11,3 +11,9 @@ Features :
 2- Profile page with the full functionality
 
 3- Search Pages
+
+
+
+** I will continue working in this Project by adding new features like 
+1. Friend Functionality with Messaging
+2. Home Page with Posts/Comments  ( Already did this with another Project: "Simple Blog" )
